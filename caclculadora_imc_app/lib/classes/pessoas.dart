@@ -1,43 +1,59 @@
  class Pessoa {
 
-// Declaração das Variaveis
-String _nome = "";
-String _endereco = "";
-String _email = "";
-String _celular = "";
+ String _nome;
+  double _peso;
+  double _altura;
 
+  Pessoa(this._nome, this._peso, this._altura);
 
-// Metodos gets e sets//
-void setNome(String nome){
-  _nome = nome;
+  // Getter para o nome
+  String get nome => _nome;
+
+  // Setter para o nome
+  set nome(String nome) {
+    if (nome.isNotEmpty) {
+      _nome = nome;
+    } else {
+      print("Nome não pode ser vazio.");
+    }
   }
 
-  String getNome(){
-    return _nome;
+  // Getters
+  double get peso => _peso;
+  double get altura => _altura;
+
+  // Setters
+  set peso(double peso) {
+    if (peso > 0) {
+      _peso = peso;
+    } else {
+      print("Peso deve ser maior que zero.");
+    }
   }
 
-
-  void setEndereco(String endereco){
-  _endereco = endereco;
+  set altura(double altura) {
+    if (altura > 0) {
+      _altura = altura;
+    } else {
+      print("Altura deve ser maior que zero.");
+    }
   }
 
-   String getEndereco(){
-  return _endereco;
+  double calcularIMC() {
+    return _peso / (_altura * _altura);
   }
 
-  void setEmail(String email){
-  _email = email;
+  String classificarIMC() {
+    double imc = calcularIMC();
+    if (imc < 18.5) {
+      return "Abaixo do peso";
+    } else if (imc >= 18.5 && imc < 24.9) {
+      return "Peso normal";
+    } else if (imc >= 25 && imc < 29.9) {
+      return "Sobrepeso";
+    } else {
+      return "Obesidade";
+    }
   }
-
-  String getEmail(){
-    return _email;
   }
-
-    void setCelular(String celular){
-  _celular = celular;
-  }
-
-  String getCelular(){
-    return _celular;
-  }
- }
+ 
